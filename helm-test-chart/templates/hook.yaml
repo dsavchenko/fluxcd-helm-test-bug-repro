@@ -1,0 +1,16 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  annotations:
+    helm.sh/hook: pre-install,pre-upgrade
+  name: simple-hook
+spec:
+  template:
+    spec:
+      containers:
+        - name: dummy
+          image: busybox
+          command: 
+            - sleep
+            - "10"
+      restartPolicy: Never
