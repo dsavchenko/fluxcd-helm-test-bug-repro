@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: test-wrevision
+  annotations:
+    "helm.sh/hook": test
+spec:
+  containers:
+    - name: dummy
+      image: busybox
+      command: ['echo']
+      args: ['{{ .Release.Revision }}']
+  restartPolicy: Never
