@@ -1,0 +1,16 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  annotations:
+    helm.sh/hook: pre-install,pre-upgrade
+  name: hook-wrevision-{{ .Release.Revision }}
+spec:
+  template:
+    spec:
+      containers:
+        - name: dummy
+          image: busybox
+          command: [ 'sleep' ]
+
+          args: ['{{ .Release.Revision }}']
+      restartPolicy: Never
